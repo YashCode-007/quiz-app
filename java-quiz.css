@@ -1,0 +1,80 @@
+/* ====== GENERAL PAGE STYLING ====== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ====== MAIN QUIZ BOX ====== */
+.quiz-container {
+    width: 90%;
+    max-width: 550px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* ====== TOP INFO BAR ====== */
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ====== QUESTION TEXT ====== */
+.question {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* ====== OPTIONS SECTION ====== */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Each button style */
+.option {
+    padding: 14px;
+    background: #f1f5f9;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: left;
+}
+
+.option:hover {
+    background: #e2e8f0;
+}
+
+/* ====== NEXT BUTTON ====== */
+.next-button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.next-button:hover {
+    background: #1d4ed8;
+}
