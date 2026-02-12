@@ -5,6 +5,11 @@ let totalquestions = 0;
 
 let selectedAnswer = null;
 
+// timer variables
+let timeLeft = 16;
+let timerInterval = null;
+
+
 // Function to fetch questions from api
 async function fetchQuestions() {
     try {
@@ -45,35 +50,75 @@ function displayQuestion() {
         button.textContent = option;
         // YOU CAN CHANGE IT TO CLASSNAME IF ERROR OCCURS
         button.classList.add('option');
-        button.onclick = () => checkAnswer(option);
+
+        // button.onclick = () => checkAnswer(option);
+        button.onclick = () => checkAnswer(option, button);
+
+
         optionsContainer.appendChild(button);
     });
 
     document.getElementById('current-question').textContent = currentQuestionIndex + 1;
 
+    startTimer();
 }
 
-function checkAnswer(selectedOption) {
+// function checkAnswer(selectedOption) {
 
+//     selectedAnswer = selectedOption;
+
+//     const currentQuestion = questions[currentQuestionIndex];
+
+//     // Increment if the answer is correct
+//     if (selectedOption === currentQuestion.correctAnswer) {
+//         correctAnswers++;
+//     }
+
+//     // Automatically move to the next Question after checking the answer
+//     nextQuestion();
+// }
+
+function checkAnswer(selectedOption, buttonElement) {
+
+    // store selected answer
     selectedAnswer = selectedOption;
+
+    // remove selected class from all options
+    const allOptions = document.querySelectorAll('.option');
+    allOptions.forEach(btn => btn.classList.remove('selected'));
+
+    // add selected class to clicked button
+    buttonElement.classList.add('selected');
+}
+
+
+function nextQuestion() {
+
+
+    // if (selectedAnswer === null) {
+    //     alert("Please select an answer!");
+    //     return;
+    // }
+    if (selectedAnswer === null && timeLeft > 0) {
+    alert("Please select an answer!");
+    return;
+}
+    clearInterval(timerInterval);
+
 
     const currentQuestion = questions[currentQuestionIndex];
 
-    // Increment if the answer is correct
-    if (selectedOption === currentQuestion.correctAnswer) {
+    if (selectedAnswer === currentQuestion.correctAnswer) {
         correctAnswers++;
     }
 
-    // Automatically move to the next Question after checking the answer
-    nextQuestion();
-}
-
-function nextQuestion() {
+    selectedAnswer = null;
 
     // current question index increase after clicking next button
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < questions.length - 1) {
+
+    if (currentQuestionIndex < questions.length) {
         displayQuestion();
     }
     else {
@@ -83,5 +128,26 @@ function nextQuestion() {
         window.location.href = 'result.html';
     }
 }
+
+function startTimer() {
+
+    timeLeft = 16;
+    document.getElementById("timer").textContent = timeLeft;
+
+    // clear old timer if exists
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = timeLeft;
+
+        if (timeLeft === 0) {
+            clearInterval(timerInterval);
+            nextQuestion(); // auto move when time ends
+        }
+
+    }, 1000);
+}
+
 
 window.onload = fetchQuestions;
