@@ -14,8 +14,8 @@ let timerInterval = null;
 async function fetchQuestions() {
     try {
         // const response = await fetch('localhost:8080/api/questions');
-        const response = await fetch('http://localhost:8080/api/questions');
-
+        const response = await fetch(`http://localhost:8080/${localStorage.getItem('quizType')}/questions`);
+        
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -100,9 +100,9 @@ function nextQuestion() {
     //     return;
     // }
     if (selectedAnswer === null && timeLeft > 0) {
-    alert("Please select an answer!");
-    return;
-}
+        alert("Please select an answer!");
+        return;
+    }
     clearInterval(timerInterval);
 
 

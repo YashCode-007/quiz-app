@@ -13,6 +13,10 @@ body {
     font-family: sans-serif;
 }
 
+body::-webkit-scrollbar{
+    scroll-behavior: smooth;
+    display: none;
+}
 /* landing page section */
 
 .landing-page {
@@ -187,6 +191,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 20px;
+    overflow: hidden;
 }
 
 .image-card img {
@@ -202,7 +207,7 @@ body {
 
 /* ✅ hover effect (optional) */
 .image-card img:hover {
-  transform: scale(1.45);
+  transform: scale(1.1);
   cursor: pointer;
 }
 
