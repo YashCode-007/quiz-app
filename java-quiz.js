@@ -9,7 +9,7 @@ let selectedAnswer = null;
 async function fetchQuestions() {
     try {
         // const response = await fetch('localhost:8080/api/questions');
-        const response = await fetch(`http://localhost:8080/${localStorage.getItem('quizType')}/questions`);
+        const response = await fetch(`https://quiz-backend-pu5i.onrender.com/${localStorage.getItem('quizType')}/questions`);
 
         if (!response.ok) {
             throw new Error('Network response was not ok');
